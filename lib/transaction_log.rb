@@ -8,7 +8,7 @@ class TransactionLog
   end
 
   def add_transaction(amount)
-    transaction_class.new(amount: 10)
+    transactions.push(transaction_class.new(amount: 10))
   end
 
   private
