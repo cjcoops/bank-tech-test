@@ -5,25 +5,37 @@ describe Account do
   subject(:account) {described_class.new}
 
   it "has a balance of zero on opening" do
-    expect(account.balance).to eq(0);
+    expect(subject.balance).to eq(0);
   end
 
   describe '#deposit' do
 
     it "increases the account balance by the amount" do
-      expect{account.deposit(10)}.to change{account.balance}.by(10);
+      expect{subject.deposit(10)}.to change{subject.balance}.by(10);
     end
 
   end
 
   describe '#withdraw' do
 
-    before do
-      account.deposit(100)
+    context 'account has a balance' do
+
+      before do
+        subject.deposit(100)
+      end
+
+      it "reduces the account balance by the amount" do
+        expect{subject.withdraw(10)}.to change{subject.balance}.by(-10);
+      end
+
     end
 
-    it "reduces the account balance by the amount" do
-      expect{account.withdraw(10)}.to change{account.balance}.by(-10);
+    context 'account is empty' do
+
+      it "raises an error" do
+        expect{subject.withdraw(10)}.to raise_error AccountEmptyError, 'Account is empty'
+      end
+
     end
 
   end

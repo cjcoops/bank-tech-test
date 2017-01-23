@@ -11,7 +11,16 @@ class Account
   end
 
   def withdraw(amount)
+    fail AccountEmptyError, 'Account is empty' if empty?
     self.balance -= amount
   end
 
+  private
+
+  def empty?
+    balance == 0
+  end
+
 end
+
+class AccountEmptyError < StandardError; end
