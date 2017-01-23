@@ -8,4 +8,13 @@ describe Account do
     expect(account.balance).to eq(0);
   end
 
+  describe '#deposit' do
+
+    it "increases the account balance by the amount" do
+      expect{account.deposit(10)}.to change{account.balance}.by(10);
+    end
+
+  end
+
+
 end
