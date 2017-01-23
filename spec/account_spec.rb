@@ -43,6 +43,11 @@ describe Account do
         expect{subject.withdraw(110)}.to raise_error NotEnoughFundsError, error_message
       end
 
+      it "raises an error if withdrawal amount zero" do
+        error_message = 'Please enter an amount greater than zero'
+        expect{subject.withdraw(0)}.to raise_error AmountError, error_message
+      end
+
       it "tells the transaction log to log a new transaction" do
         expect(transaction_log).to receive(:add_transaction).with(-10,90);
         subject.withdraw(10)

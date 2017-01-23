@@ -13,7 +13,7 @@ class Statement
   def print_statement
 
     printf(LAYOUT, "date", "||", "credit",  "||", "debit",  "||", "balance")
-    transaction_log.transactions.each do |transaction|
+    transaction_log.transactions.reverse.each do |transaction|
       printf(LAYOUT,  convert_date(transaction.date), "||",
                       convert_amount(transaction.credit),"||",
                       convert_amount(transaction.debit), "||",

@@ -16,15 +16,16 @@ describe Statement do
 
   describe "#print" do
 
-    it "should print a line of the statement" do
+    it "should print the statement" do
       headers = "date            || credit     || debit      || balance"
       first_row = "23/01/2017      || 10.00      ||            || 100.00"
       second_row = "23/01/2017      ||            || 5.00       || 95.00"
       expect { printf(headers) }.to output.to_stdout
-      expect { printf(headers) }.to output.to_stdout
-      expect { printf(headers) }.to output.to_stdout
+      expect { printf(first_row) }.to output.to_stdout
+      expect { printf(second_row) }.to output.to_stdout
       subject.print_statement
     end
+
   end
 
 end
