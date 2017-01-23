@@ -28,6 +28,11 @@ describe Account do
         expect{subject.withdraw(10)}.to change{subject.balance}.by(-10);
       end
 
+      it "raises an error if withdrawal amount is greater than balance" do
+        error_message = 'You do not have enough funds in your account'
+        expect{subject.withdraw(110)}.to raise_error NotEnoughFundsError, error_message 
+      end
+
     end
 
     context 'account is empty' do

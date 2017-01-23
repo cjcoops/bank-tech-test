@@ -12,6 +12,7 @@ class Account
 
   def withdraw(amount)
     fail AccountEmptyError, 'Account is empty' if empty?
+    fail NotEnoughFundsError, 'You do not have enough funds in your account' if not_enough_funds?(amount)
     self.balance -= amount
   end
 
@@ -21,6 +22,11 @@ class Account
     balance == 0
   end
 
+  def not_enough_funds?(amount)
+    amount > balance
+  end
+
 end
 
 class AccountEmptyError < StandardError; end
+class NotEnoughFundsError < StandardError; end
