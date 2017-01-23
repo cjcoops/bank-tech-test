@@ -2,17 +2,21 @@ require 'date'
 
 class Transaction
 
-  attr_reader :amount, :type, :date, :resulting_balance
+  attr_reader :date, :resulting_balance
+  attr_accessor  :credit, :debit
 
   def initialize(amount, resulting_balance)
-    @amount = amount
-    @type = set_type(amount)
     @date = Time.now.to_date
     @resulting_balance = resulting_balance
+    set_credit_or_debit(amount)
   end
 
-  def set_type(amount)
-    amount > 0 ? :credit : :debit
+  def set_credit_or_debit(amount)
+    if amount > 0
+      self.credit = amount.to_f
+    else
+      self.debit = -amount.to_f
+    end
   end
 
 end

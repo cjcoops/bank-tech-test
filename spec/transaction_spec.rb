@@ -25,8 +25,12 @@ describe Transaction do
 
     subject(:credit) {described_class.new(10, 100)}
 
-    it "has a type of 'credit'" do
-      expect(subject.type).to equal(:credit)
+    it "has a debit of nil" do
+      expect(subject.debit).to be_nil
+    end
+
+    it "has a credit of 10" do
+      expect(subject.credit).to equal(10.0)
     end
 
   end
@@ -35,10 +39,13 @@ describe Transaction do
 
     subject(:debit) {described_class.new(-10, 100)}
 
-    it "has a type of 'debit'" do
-      expect(subject.type).to equal(:debit)
+    it "has a credit of nil" do
+      expect(subject.credit).to be_nil
     end
 
+    it "has a debit of 10" do
+      expect(subject.debit).to equal(10.0)
+    end
   end
 
 
