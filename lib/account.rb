@@ -1,3 +1,5 @@
+require_relative './transaction_log'
+
 class Account
 
   attr_accessor :balance
@@ -17,7 +19,7 @@ class Account
     fail AccountEmptyError, 'Account is empty' if empty?
     fail NotEnoughFundsError, 'You do not have enough funds in your account' if not_enough_funds?(amount)
     self.balance -= amount
-    transaction_log.add_transaction(amount)
+    transaction_log.add_transaction(-amount)
   end
 
   private

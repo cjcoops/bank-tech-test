@@ -1,3 +1,5 @@
+require_relative './transaction'
+
 class TransactionLog
 
   attr_reader :transactions
@@ -8,7 +10,7 @@ class TransactionLog
   end
 
   def add_transaction(amount)
-    transactions.push(transaction_class.new(amount: 10))
+    transactions.push(transaction_class.new(amount: amount))
   end
 
   private

@@ -42,7 +42,7 @@ describe Account do
 
       it "tells the transaction log to log a new transaction" do
         expect(transaction_log).to receive(:add_transaction).with(-10);
-        subject.withdraw(-10)
+        subject.withdraw(10)
       end
 
     end
