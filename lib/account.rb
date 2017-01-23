@@ -5,9 +5,10 @@ class Account
   attr_accessor :balance
 
 
-  def initialize(transaction_log: TransactionLog.new)
+  def initialize(transaction_log: TransactionLog.new, statement_class: Statement)
     @balance = 0
     @transaction_log = transaction_log
+    @statement_class = statement_class
   end
 
   def deposit(amount)
@@ -22,9 +23,13 @@ class Account
     transaction_log.add_transaction(-amount, balance)
   end
 
+  def print_statement
+    statement_class.new(transaction_log)
+  end
+
   private
 
-  attr_reader :transaction_log
+  attr_reader :transaction_log, :statement_class
 
   def empty?
     balance == 0

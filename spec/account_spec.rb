@@ -2,8 +2,11 @@ require 'account'
 
 describe Account do
 
+  let(:statement) {double :statement}
+  let(:statement_class) {double :statement_class, new: statement}
   let(:transaction_log) {double :transaction_log, add_transaction: nil}
-  subject(:account) {described_class.new(transaction_log: transaction_log)}
+  subject(:account) {described_class.new(transaction_log: transaction_log,
+                                        statement_class: statement_class)}
 
 
   it "has a balance of zero on opening" do
@@ -53,6 +56,15 @@ describe Account do
         expect{subject.withdraw(10)}.to raise_error AccountEmptyError, 'Account is empty'
       end
 
+    end
+
+  end
+
+  describe '#print_statement' do
+
+    it "creates a new statement" do
+      expect(statement_class).to receive(:new).with(transaction_log)
+      subject.print_statement
     end
 
   end
