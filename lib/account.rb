@@ -10,4 +10,8 @@ class Account
     self.balance += amount
   end
 
+  def withdraw(amount)
+    self.balance -= amount
+  end
+
 end

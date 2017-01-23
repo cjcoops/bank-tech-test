@@ -16,5 +16,17 @@ describe Account do
 
   end
 
+  describe '#withdraw' do
+
+    before do
+      account.deposit(100)
+    end
+
+    it "reduces the account balance by the amount" do
+      expect{account.withdraw(10)}.to change{account.balance}.by(-10);
+    end
+
+  end
+
 
 end
