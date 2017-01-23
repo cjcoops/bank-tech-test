@@ -13,12 +13,12 @@ describe TransactionLog do
   describe '#add_transaction' do
 
     it "creates a new transaction" do
-      expect(transaction_class).to receive(:new).with(amount: 10);
-      subject.add_transaction(10)
+      expect(transaction_class).to receive(:new).with(10, 100);
+      subject.add_transaction(10, 100)
     end
 
     it "stores the transaction in transactions" do
-      subject.add_transaction(10)
+      subject.add_transaction(10, 100)
       expect(subject.transactions).to include(transaction)
     end
 

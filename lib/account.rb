@@ -12,14 +12,14 @@ class Account
 
   def deposit(amount)
     self.balance += amount
-    transaction_log.add_transaction(amount)
+    transaction_log.add_transaction(amount, balance)
   end
 
   def withdraw(amount)
     fail AccountEmptyError, 'Account is empty' if empty?
     fail NotEnoughFundsError, 'You do not have enough funds in your account' if not_enough_funds?(amount)
     self.balance -= amount
-    transaction_log.add_transaction(-amount)
+    transaction_log.add_transaction(-amount, balance)
   end
 
   private

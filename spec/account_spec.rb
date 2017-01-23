@@ -17,7 +17,7 @@ describe Account do
     end
 
     it "tells the transaction log to log a new transaction" do
-      expect(transaction_log).to receive(:add_transaction).with(10);
+      expect(transaction_log).to receive(:add_transaction).with(10,10);
       subject.deposit(10)
     end
 
@@ -41,7 +41,7 @@ describe Account do
       end
 
       it "tells the transaction log to log a new transaction" do
-        expect(transaction_log).to receive(:add_transaction).with(-10);
+        expect(transaction_log).to receive(:add_transaction).with(-10,90);
         subject.withdraw(10)
       end
 
