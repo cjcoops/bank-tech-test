@@ -3,11 +3,11 @@ require 'statement'
 describe Statement do
 
   let(:date) {Time.now.to_date}
-  let(:transaction_1) {double :transaction, date: date, credit: 10, debit: nil, resulting_balance: 100}
-  let(:transaction_2) {double :transaction, date: date, credit: nil, debit: 5, resulting_balance: 95}
+  let(:transaction_1) {double :transaction, date: date, credit: 10, debit: nil, resulting_balance: 100.00}
+  let(:transaction_2) {double :transaction, date: date, credit: nil, debit: 5.00, resulting_balance: 95.00}
   let(:transactions) do [transaction_1, transaction_2] end
   let(:transaction_log) {double :transaction_log, transactions: transactions}
-  subject(:statement) {Statement.new(transaction_log)}
+  subject(:statement) {described_class.new(transaction_log)}
 
 
   it "is initialized with a transaction log" do
@@ -17,7 +17,12 @@ describe Statement do
   describe "#print" do
 
     it "should print a line of the statement" do
-      # expect(STDOUT).to receive(:printf).with("%-10s %s\n", 10, nil, 100)
+      headers = "date            || credit     || debit      || balance"
+      first_row = "23/01/2017      || 10.00      ||            || 100.00"
+      second_row = "23/01/2017      ||            || 5.00       || 95.00"
+      expect { printf(headers) }.to output.to_stdout
+      expect { printf(headers) }.to output.to_stdout
+      expect { printf(headers) }.to output.to_stdout
       subject.print_statement
     end
   end
