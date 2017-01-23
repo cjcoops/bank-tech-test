@@ -2,7 +2,9 @@ require 'account'
 
 describe Account do
 
-  subject(:account) {described_class.new}
+  let(:transaction_log) {double :transaction_log}
+  subject(:account) {described_class.new(transaction_log: transaction_log)}
+
 
   it "has a balance of zero on opening" do
     expect(subject.balance).to eq(0);
@@ -30,7 +32,7 @@ describe Account do
 
       it "raises an error if withdrawal amount is greater than balance" do
         error_message = 'You do not have enough funds in your account'
-        expect{subject.withdraw(110)}.to raise_error NotEnoughFundsError, error_message 
+        expect{subject.withdraw(110)}.to raise_error NotEnoughFundsError, error_message
       end
 
     end
