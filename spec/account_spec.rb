@@ -2,7 +2,7 @@ require 'account'
 
 describe Account do
 
-  let(:transaction_log) {double :transaction_log}
+  let(:transaction_log) {double :transaction_log, add_transaction: nil}
   subject(:account) {described_class.new(transaction_log: transaction_log)}
 
 
@@ -14,6 +14,11 @@ describe Account do
 
     it "increases the account balance by the amount" do
       expect{subject.deposit(10)}.to change{subject.balance}.by(10);
+    end
+
+    it "tells the transaction log to log a new transaction" do
+      expect(transaction_log).to receive(:add_transaction).with(10);
+      subject.deposit(10)
     end
 
   end

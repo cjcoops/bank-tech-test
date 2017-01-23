@@ -10,6 +10,7 @@ class Account
 
   def deposit(amount)
     self.balance += amount
+    transaction_log.add_transaction(amount)
   end
 
   def withdraw(amount)
